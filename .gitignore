@@ -1,0 +1,14 @@
+# Local, generated and private files
+__pycache__/
+*.py[cod]
+*.db
+*.sqlite
+*.sqlite3
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log
+.ipynb_checkpoints/
