@@ -1,36 +1,57 @@
 # Customer Sales Analysis
-**Who comes back, who buys once, and who has never ordered?**
+### Turning order history into a useful view of customer behaviour
 
-This project looks at the *people behind the sales*, using a small imaginary shop dataset. The point is to understand customer behaviour rather than only add up revenue.
+**SQL / SQLite** · Customer segmentation · Cohort foundations · Data interpretation
 
-## The result in 30 seconds
-The stand-alone case study follows eight fictional customers and twelve orders between March and June 2026.
+> **The business question:** How many registered customers actually buy, how many return, and who is missing when we only look at transactions?
 
-| Customer group | People | Meaning |
-| --- | ---: | --- |
-| Bought more than once | 4 | Made at least two orders |
-| Bought once | 3 | Made one order |
-| Never ordered | 1 | Appears in the customer list but has no purchase |
+The `case-study/` directory is a standalone exercise using **fictional customers and purchases**. Its results are separate from the repository's earlier practice work.
 
-**One finding:** 4 of the 7 people who ordered came back at least once (57.14%). That is an *observed repeat-purchase share*, not a long-term retention rate: later customers had less time to return.
+## The answer at a glance
 
-All names and purchases are synthetic, not taken from an employer or real users.
+| Observed group | Customers | What it means |
+|:--|--:|:--|
+| Repeat purchasers | 4 | At least two observed orders |
+| One-time purchasers | 3 | Exactly one observed order |
+| No purchases | 1 | Customer exists but has no recorded order |
+| Total | 8 | Registered customers in the sample |
 
-## Explore the project
-1. [Read the findings](case-study/FINDINGS.md) — results and the limits of this small sample.
-2. [See the data](case-study/customer-data.sql) — the shop's customers, products and purchases.
-3. [See the queries](case-study/customer-analysis.sql) — how the customer groups are calculated.
-4. [Start with the simple guide](case-study/START-HERE.md) — explanations with no assumed SQL background.
+Four of the seven customers who purchased placed another order during the observation window (**57.14%**). This is an *observed repeat-purchase share*, not a reliable long-term retention estimate. Customers arriving later had less time to return.
 
-## How to run it
-With SQLite installed, from the repository root:
+## Why the method matters
+
+Two choices make a big difference to the answer:
+
+1. **Start from the customer table.** A `LEFT JOIN` keeps the customer who has no order. Starting with sales transactions would silently hide that customer.
+2. **Define your time window.** First-purchase month and follow-up period matter when comparing customer behaviour. A blank follow-up period is not the same as a 0% retention result.
+
+## Explore the case
+
+| Start with | What you will find |
+|:--|:--|
+| [Five-minute explanation](case-study/START-HERE.md) | The story without technical language |
+| [Results and caveats](case-study/FINDINGS.md) | Customer groups and what the small sample cannot prove |
+| [SQL analysis](case-study/customer-analysis.sql) | Order counts, customer value, first purchases, returners and product breadth |
+| [Synthetic data](case-study/customer-data.sql) | Fully reproducible source tables |
+| [Quality checks](case-study/quality-checks.sql) | Basic integrity and reconciliation |
+
+```text
+case-study/
+  customer-data.sql       eight customers and twelve orders
+  customer-analysis.sql   customer-level and cohort queries
+  quality-checks.sql      source consistency checks
+  FINDINGS.md             findings and limitations
+  START-HERE.md           plain-English explanation
+```
+
+## Reproduce
+
 ```bash
 sqlite3 customers.db < case-study/customer-data.sql
+sqlite3 -header -column customers.db < case-study/quality-checks.sql
 sqlite3 -header -column customers.db < case-study/customer-analysis.sql
 ```
 
-## Skills shown
-Joining data (including people with no orders), building customer groups, using CTEs to make complex queries readable and applying ROW_NUMBER to identify first and later purchases.
+**Skills demonstrated:** SQL joins, common table expressions (CTEs), `ROW_NUMBER()`, grouping, treatment of missing purchase activity, clear metric definitions and cautious interpretation.
 
-## A note on scope
-The `case-study/` folder is a new, self-contained exercise. Its data and results are separate from earlier practice files in this repository. This small dataset is for learning and query validation, not for forecasting customer behaviour.
+**Next iteration:** a Python cohort analysis with consistent follow-up windows and simple, readable visualizations. The separate [portfolio hub](https://github.com/libana3012-pixel) will link the related projects when its public profile is set up.
