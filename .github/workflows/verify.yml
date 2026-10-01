@@ -1,0 +1,25 @@
+name: Verify SQL case study
+
+on:
+  push:
+    paths:
+      - 'case-study/**'
+      - 'verify.py'
+      - '.github/workflows/verify.yml'
+  pull_request:
+    paths:
+      - 'case-study/**'
+      - 'verify.py'
+      - '.github/workflows/verify.yml'
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify source integrity and published headline values
+        run: python3 verify.py
