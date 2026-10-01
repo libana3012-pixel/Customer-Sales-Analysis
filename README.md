@@ -7,6 +7,24 @@
 
 The `case-study/` directory is a standalone exercise using **fictional customers and purchases**. Its results are separate from the repository's earlier practice work.
 
+## About the analyst
+
+I'm Liban Yusuf. My background in marketing and sales management shapes the way I approach customer data: define the commercial question first, then use SQL to find an answer that is useful and can be checked. This case focuses on the distinction between customer registration, purchase activity and repeat behaviour.
+
+**Related work:** [Revenue analysis](https://github.com/libana3012-pixel/sales-revenue-analysis-sql) · [GitHub profile](https://github.com/libana3012-pixel)
+
+## Repository map
+
+| Location | Purpose |
+| --- | --- |
+| [`case-study/`](case-study/) | Featured customer analysis |
+| [`case-study/START-HERE.md`](case-study/START-HERE.md) | No-jargon walkthrough |
+| [`case-study/FINDINGS.md`](case-study/FINDINGS.md) | Findings and important qualifications |
+| [`case-study/quality-checks.sql`](case-study/quality-checks.sql) | Sample-data reconciliation |
+| [`archive/early-exercises/`](archive/early-exercises/) | Original SQL exercises, kept for reference |
+
+---
+
 ## The answer at a glance
 
 | Observed group | Customers | What it means |
