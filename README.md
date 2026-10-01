@@ -1,51 +1,36 @@
 # Customer Sales Analysis
-**SQL · SQLite · Customer Analytics**
+**Who comes back, who buys once, and who has never ordered?**
 
-## Overview
-A SQL case study examining customer purchasing activity, order frequency and product demand. The purpose is to structure common commercial questions as repeatable database queries.
+This project looks at the *people behind the sales*, using a small imaginary shop dataset. The point is to understand customer behaviour rather than only add up revenue.
 
-## Business questions
-- Which customers have placed the most orders?
-- Which products occur most frequently in the order records?
-- Which customers have never placed an order?
-- How many distinct products has each customer bought?
+## The result in 30 seconds
+The stand-alone case study follows eight fictional customers and twelve orders between March and June 2026.
 
-## Data overview
-This project uses three related tables: `customers`, `products` and `orders`. Refer to the source files for the exact schema and sample data.
+| Customer group | People | Meaning |
+| --- | ---: | --- |
+| Bought more than once | 4 | Made at least two orders |
+| Bought once | 3 | Made one order |
+| Never ordered | 1 | Appears in the customer list but has no purchase |
 
-## Example query: product activity
-```sql
-SELECT
-    product,
-    COUNT(*) AS total_orders
-FROM orders
-GROUP BY product
-ORDER BY total_orders DESC;
+**One finding:** 4 of the 7 people who ordered came back at least once (57.14%). That is an *observed repeat-purchase share*, not a long-term retention rate: later customers had less time to return.
+
+All names and purchases are synthetic, not taken from an employer or real users.
+
+## Explore the project
+1. [Read the findings](case-study/FINDINGS.md) — results and the limits of this small sample.
+2. [See the data](case-study/customer-data.sql) — the shop's customers, products and purchases.
+3. [See the queries](case-study/customer-analysis.sql) — how the customer groups are calculated.
+4. [Start with the simple guide](case-study/START-HERE.md) — explanations with no assumed SQL background.
+
+## How to run it
+With SQLite installed, from the repository root:
+```bash
+sqlite3 customers.db < case-study/customer-data.sql
+sqlite3 -header -column customers.db < case-study/customer-analysis.sql
 ```
 
-**Interpretation:** This query counts rows by product. Its result represents distinct orders only if each row is one order. The row-level structure should be checked before reporting it as an order count.
+## Skills shown
+Joining data (including people with no orders), building customer groups, using CTEs to make complex queries readable and applying ROW_NUMBER to identify first and later purchases.
 
-## Measures to validate
-| Measure | Business purpose |
-| --- | --- |
-| Order frequency | Compare purchasing activity across customers |
-| Customers with no orders | Identify customers without recorded transactions |
-| Product frequency | Understand which products appear most often |
-| Distinct products by customer | Examine variety of purchasing activity |
-
-## Method and quality checks
-- Confirm table keys and join relationships.
-- Check whether counts represent records, items or distinct orders.
-- Identify missing customer references and duplicate records.
-- Record the reporting period and assumptions.
-
-## Findings
-Verified numerical findings will be added after the SQL outputs are executed and validated. This README does not present illustrative numbers as observed results.
-
-## Next steps
-1. Publish the source queries alongside the dataset.
-2. Add actual result tables and concise conclusions.
-3. Extend the analysis with customer segments and purchasing trends where the data supports them.
-
-## Tools
-SQL · SQLite · GitHub
+## A note on scope
+The `case-study/` folder is a new, self-contained exercise. Its data and results are separate from earlier practice files in this repository. This small dataset is for learning and query validation, not for forecasting customer behaviour.
