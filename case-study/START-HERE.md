@@ -1,5 +1,7 @@
 # Start here: from orders to customer insight
 
+[← Repository home](../README.md) · [Why the method was chosen](METHOD.md) · [Results](FINDINGS.md) · [Source data](customer-data.sql)
+
 ## The story
 The first project asked how much the shop sold. This one asks a different question: **Who shops again?** A shop owner may have a customer register, but some of those people have never made a purchase.
 
