@@ -1,5 +1,7 @@
 # Customer Sales Analysis
 
+[Complete project workflow](WORKFLOW.md)
+
 [How the work was carried out, with tools and calculations](WORKFLOW.md)
 
 [![Verify SQL case study](https://github.com/libana3012-pixel/Customer-Sales-Analysis/actions/workflows/verify.yml/badge.svg)](https://github.com/libana3012-pixel/Customer-Sales-Analysis/actions/workflows/verify.yml)
