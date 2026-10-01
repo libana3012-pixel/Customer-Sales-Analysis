@@ -1,4 +1,6 @@
 # Customer Sales Analysis
+
+[![Verify SQL case study](https://github.com/libana3012-pixel/customer-sales-analysis-sql/actions/workflows/verify.yml/badge.svg)](https://github.com/libana3012-pixel/customer-sales-analysis-sql/actions/workflows/verify.yml)
 ### Turning order history into a useful view of customer behaviour
 
 **SQL / SQLite** · Customer segmentation · Cohort foundations · Data interpretation
